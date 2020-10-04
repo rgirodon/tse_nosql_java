@@ -27,6 +27,6 @@ public class MongoDbClientTest{
 		
 		Collection<Document> posts = this.mongoDbClient.findAllPosts();
 		
-		Assert.assertEquals(4, posts.size());
+		Assert.assertEquals(6, posts.size());
 	}
 }

@@ -25,7 +25,7 @@ public class MongoDbClient {
 		Collection<Document> result = new ArrayList<>();
 		
 		// Accessing the database 
-		MongoDatabase database = mongoClient.getDatabase("myDb"); 
+		MongoDatabase database = mongoClient.getDatabase("mydb"); 
 
 	    // Retrieving a collection 
 	    MongoCollection<Document> posts = database.getCollection("posts");
