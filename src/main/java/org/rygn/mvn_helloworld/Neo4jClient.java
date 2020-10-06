@@ -3,12 +3,14 @@ package org.rygn.mvn_helloworld;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.neo4j.driver.v1.AuthTokens;
-import org.neo4j.driver.v1.Driver;
-import org.neo4j.driver.v1.GraphDatabase;
-import org.neo4j.driver.v1.Record;
-import org.neo4j.driver.v1.Session;
-import org.neo4j.driver.v1.StatementResult;
+import org.neo4j.driver.AuthTokens;
+import org.neo4j.driver.Driver;
+import org.neo4j.driver.GraphDatabase;
+import org.neo4j.driver.Record;
+import org.neo4j.driver.Result;
+import org.neo4j.driver.Session;
+
+
 
 public class Neo4jClient {
 
@@ -26,7 +28,7 @@ public class Neo4jClient {
 		
 		try (Session session = this.neo4jDriver.session()) {
 			
-            StatementResult statementResult = session.run("MATCH (a:PERSON) RETURN a.firstname AS name");
+            Result statementResult = session.run("MATCH (a:PERSON) RETURN a.firstname AS name");
             
            
             while (statementResult.hasNext()) {

@@ -34,7 +34,7 @@
 	<dependency>
 	    <groupId>org.neo4j.driver</groupId>
 	    <artifactId>neo4j-java-driver</artifactId>
-	    <version>1.4.5</version>
+	    <version>4.1.1</version>
 	</dependency>	
 	
 	<!-- https://mvnrepository.com/artifact/com.datastax.cassandra/cassandra-driver-core -->
