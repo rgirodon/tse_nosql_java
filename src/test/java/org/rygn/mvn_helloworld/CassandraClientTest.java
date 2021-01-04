@@ -28,7 +28,7 @@ public class CassandraClientTest{
 		
 		Collection<String> names = this.cassandraClient.findAllCyclistsName();
 		
-		Assert.assertEquals(3, names.size());	
+		Assert.assertEquals(2, names.size());	
 	}
 	
 	@After
