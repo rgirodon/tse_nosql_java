@@ -1,39 +1,38 @@
 package org.rygn.mvn_helloworld;
 
+import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-import com.datastax.driver.core.Cluster;
-import com.datastax.driver.core.ResultSet;
-import com.datastax.driver.core.Row;
-import com.datastax.driver.core.Session;
+import com.datastax.oss.driver.api.core.CqlSession;
+import com.datastax.oss.driver.api.core.cql.ResultSet;
+import com.datastax.oss.driver.api.core.cql.Row;
+
 
 public class CassandraClient {
 
-	private Cluster cluster;
+	private CqlSession session;
 	
 	public CassandraClient(String host, int port) {
 		
-		this.cluster = Cluster.builder()
-		        .withClusterName("myCluster")
-		        .addContactPoint(host)
-		        .withPort(port)
-		        .build();
+		this.session = CqlSession.builder()
+								    .addContactPoint(new InetSocketAddress(host, port))
+								    .withLocalDatacenter("datacenter1")	
+								    .withKeyspace("cycling")
+								    .build();
 	}
 	
 	public Collection<String> findAllCyclistsName() {
 		
 		Collection<String> result = new ArrayList<>();
+			
+		ResultSet rs = session.execute("select lastname FROM cyclists");
+	  
+		Iterator<Row> rowIterator = rs.iterator();
 		
-		Session session = cluster.connect("cycling");                                           
-
-	    ResultSet rs = session.execute("select lastname FROM cyclists");    
-	    
-	    Iterator<Row> rowIterator = rs.iterator();
-	    
-	    while (rowIterator.hasNext()) {
-	    
+		while (rowIterator.hasNext()) {
+		    
 	    	Row row = rowIterator.next();
 	    	
 	    	result.add(row.getString("lastname"));
@@ -44,6 +43,6 @@ public class CassandraClient {
 	
 	public void close() {
 		
-		this.cluster.close();
+		this.session.close();
 	}
 }

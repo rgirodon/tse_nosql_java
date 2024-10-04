@@ -6,8 +6,9 @@ import java.util.Iterator;
 
 import org.bson.Document;
 
-import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
@@ -17,7 +18,7 @@ public class MongoDbClient {
 	
 	public MongoDbClient(String host, int port) {
 	
-		this.mongoClient = new MongoClient(host, port);
+		this.mongoClient = MongoClients.create("mongodb://" + host + ":" + port);
 	}
 	
 	public Collection<Document> findAllPosts() {
@@ -25,7 +26,7 @@ public class MongoDbClient {
 		Collection<Document> result = new ArrayList<>();
 		
 		// Accessing the database 
-		MongoDatabase database = mongoClient.getDatabase("mydb"); 
+		MongoDatabase database = mongoClient.getDatabase("test"); 
 
 	    // Retrieving a collection 
 	    MongoCollection<Document> posts = database.getCollection("posts");

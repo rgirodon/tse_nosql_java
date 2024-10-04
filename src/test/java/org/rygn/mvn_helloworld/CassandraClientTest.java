@@ -20,7 +20,7 @@ public class CassandraClientTest{
 	@Before
 	public void init() {
 		
-		this.cassandraClient = new CassandraClient("localhost", 9042);
+		this.cassandraClient = new CassandraClient("127.0.0.1", 9042);
 	}
 	
 	@Test

@@ -19,7 +19,7 @@ public class Neo4jClientTest{
 	@Before
 	public void init() {
 		
-		this.neo4jClient = new Neo4jClient("127.0.0.1", 7687, "neo4j", "RafaelYanice10");
+		this.neo4jClient = new Neo4jClient("127.0.0.1", 7687, "neo4j", "password");
 	}
 	
 	@Test
@@ -31,7 +31,7 @@ public class Neo4jClientTest{
 		
 		Assert.assertTrue(names.contains("Remy"));
 		
-		Assert.assertTrue(names.contains("Jacques"));
+		Assert.assertTrue(names.contains("Christophe"));
 		
 		Assert.assertTrue(names.contains("Bruno"));
 	}
